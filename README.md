@@ -31,7 +31,7 @@ This is a Laravel 12 application configured to run with Docker and Docker Compos
 2. **Copy environment file**:
 
    ```bash
-   copy .env.docker .env
+   cp .env.docker .env
    ```
 
 3. **Build and start the containers**:

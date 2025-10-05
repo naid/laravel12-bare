@@ -192,6 +192,62 @@ docker-compose build --no-cache
 docker-compose up -d
 ```
 
+### Cache Path Error (HTTP 500)
+
+If you encounter this error:
+
+```
+InvalidArgumentException: Please provide a valid cache path.
+```
+
+**Solution:**
+
+```bash
+# Create required cache directories
+docker-compose exec app mkdir -p /var/www/html/storage/framework/cache
+docker-compose exec app mkdir -p /var/www/html/storage/framework/sessions
+docker-compose exec app mkdir -p /var/www/html/storage/framework/views
+docker-compose exec app mkdir -p /var/www/html/storage/app/public
+
+# Fix permissions
+docker-compose exec app chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+docker-compose exec app chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Clear and rebuild cache
+docker-compose exec app php artisan view:clear
+docker-compose exec app php artisan view:cache
+```
+
+### Sessions Table Missing Error
+
+If you encounter this error:
+
+```
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel12.sessions' doesn't exist
+```
+
+**Solution:**
+
+```bash
+# Create sessions table migration
+docker-compose exec app php artisan make:migration create_sessions_table
+
+# Edit the migration file to include proper sessions table structure:
+# database/migrations/YYYY_MM_DD_HHMMSS_create_sessions_table.php
+# Replace the up() method with:
+# Schema::create('sessions', function (Blueprint $table) {
+#     $table->string('id')->primary();
+#     $table->foreignId('user_id')->nullable()->index();
+#     $table->string('ip_address', 45)->nullable();
+#     $table->text('user_agent')->nullable();
+#     $table->longText('payload');
+#     $table->integer('last_activity')->index();
+# });
+
+# Run the migration
+docker-compose exec app php artisan migrate
+```
+
 ### Permission issues
 
 - On Windows, this is usually handled automatically

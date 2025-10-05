@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel12_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8000:80"
+    networks:
+      - laravel12_network
+    depends_on:
+      - db
+    environment:
+      - PHP_FPM_LISTEN=127.0.0.1:9000
+
+  db:
+    image: mysql:8.0
+    container_name: laravel12_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: laravel12
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: password
+      MYSQL_USER: laravel12
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel12_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel12_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
+    networks:
+      - laravel12_network
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  laravel12_network:
+    driver: bridge

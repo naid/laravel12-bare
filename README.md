@@ -46,19 +46,25 @@ This is a Laravel 12 application configured to run with Docker and Docker Compos
    docker-compose exec app composer install
    ```
 
-5. **Generate application key**:
+5. **Create bootstrap cache directory** (if needed):
+
+   ```bash
+   docker-compose exec app mkdir -p bootstrap/cache
+   ```
+
+6. **Generate application key**:
 
    ```bash
    docker-compose exec app php artisan key:generate
    ```
 
-6. **Run database migrations**:
+7. **Run database migrations**:
 
    ```bash
    docker-compose exec app php artisan migrate
    ```
 
-7. **Access your application**:
+8. **Access your application**:
    - Laravel App: http://localhost:8000
    - PhpMyAdmin: http://localhost:8080 (root/root)
 
@@ -135,22 +141,81 @@ Once the application is running, you can:
 
 ## Troubleshooting
 
+### Bootstrap Cache Directory Error
+
+If you encounter this error during `composer install`:
+
+```
+The /var/www/html/bootstrap/cache directory must be present and writable.
+```
+
+**Solution:**
+
+```bash
+docker-compose exec app mkdir -p bootstrap/cache
+docker-compose exec app chown -R www-data:www-data bootstrap/cache
+```
+
 ### Container won't start
 
 - Make sure Docker Desktop is running
 - Check if ports 8000, 8080, and 3306 are available
 - Try `docker-compose down -v` and rebuild
+- Clear build cache: `docker-compose build --no-cache`
+
+### Composer Install Issues
+
+If `composer install` fails:
+
+```bash
+# Clear composer cache and retry
+docker-compose exec app composer clear-cache
+docker-compose exec app composer install --no-cache
+```
 
 ### Database connection issues
 
 - Ensure the database container is running: `docker-compose ps`
 - Check database logs: `docker-compose logs db`
 - Verify environment variables in `.env`
+- Wait for database to fully start (may take 30-60 seconds on first run)
+
+### Build Cache Issues
+
+If you see "changes out of order" or file not found errors during build:
+
+```bash
+# Stop containers and clear build cache
+docker-compose down
+docker system prune -f
+docker-compose build --no-cache
+docker-compose up -d
+```
 
 ### Permission issues
 
 - On Windows, this is usually handled automatically
-- On Linux/Mac, you might need to adjust file permissions
+- On Linux/Mac, you might need to adjust file permissions:
+  ```bash
+  docker-compose exec app chown -R www-data:www-data /var/www/html
+  docker-compose exec app chmod -R 755 /var/www/html
+  ```
+
+### Multiple Laravel Projects
+
+To run multiple Laravel projects simultaneously, ensure each uses different ports:
+
+**Project 1 (Laravel 12):**
+
+- App: `8000:80`
+- PhpMyAdmin: `8080:80`
+- MySQL: `3306:3306`
+
+**Project 2 (Laravel 11):**
+
+- App: `8001:80`
+- PhpMyAdmin: `8081:80`
+- MySQL: `3307:3306`
 
 ## Environment Variables
 

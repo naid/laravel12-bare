@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController
 {
@@ -18,14 +19,14 @@ class AuthController
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials, $requests->filled('remember'))) {
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
             return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
-            'email'=>'Email not found.'
+            'email' => 'Email not found.',
         ])->onlyInput('email');
     }
 

@@ -6,7 +6,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/noid', function () {
     return view('welcome2');
 });

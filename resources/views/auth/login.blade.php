@@ -1,130 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .login-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #555;
-            font-weight: bold;
-        }
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        .error {
-            color: #e74c3c;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-        .remember-me {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .remember-me input {
-            margin-right: 0.5rem;
-        }
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #5568d3;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h1>Login</h1>
-        
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    value="{{ old('email') }}" 
-                    required 
-                    autofocus
-                >
-                @error('email')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
+@extends('layouts.app')
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    name="password" 
-                    required
-                >
-                @error('password')
-                    <div class="error">{{ $message }}</div>
-                @enderror
-            </div>
+@section('title', 'Login')
 
-            <div class="remember-me">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember" style="margin-bottom: 0; font-weight: normal;">Remember Me</label>
-            </div>
+@section('container-class', 'min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-purple-800 py-12 px-4 sm:px-6 lg:px-8')
 
-            <button type="submit">Login</button>
-        </form>
+@section('content')
+<div class="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-center text-gray-800">Login</h1>
+        <p class="text-center text-gray-600 mt-2">Welcome back! Please login to your account</p>
     </div>
-</body>
-</html>
+    
+    <form method="POST" action="{{ route('login') }}" class="space-y-6">
+        @csrf
+        
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                Email Address
+            </label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                value="{{ old('email') }}" 
+                required 
+                autofocus
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 @error('email') border-red-500 @enderror"
+                placeholder="you@example.com"
+            >
+            @error('email')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                Password
+            </label>
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 @error('password') border-red-500 @enderror"
+                placeholder="••••••••"
+            >
+            @error('password')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+            @enderror
+        </div>
+
+        <div class="flex items-center">
+            <input 
+                type="checkbox" 
+                id="remember" 
+                name="remember"
+                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+            >
+            <label for="remember" class="ml-2 block text-sm text-gray-700">
+                Remember me
+            </label>
+        </div>
+
+        <button 
+            type="submit"
+            class="w-full py-3 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200 shadow-lg hover:shadow-xl"
+        >
+            Sign In
+        </button>
+    </form>
+</div>
+@endsection

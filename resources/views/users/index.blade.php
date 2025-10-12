@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($users as $user)
+            @forelse ($users as $user)
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {{ $user->name }}
@@ -30,7 +30,13 @@
                         {{ $user->email }}
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="2" class="px-6 py-4 text-center text-gray-500">
+                        No users found.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

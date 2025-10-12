@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PersonnelController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,5 +27,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+
+    Route::get('/personnel', [PersonnelController::class, 'index'])->name('personnel.index');
+    Route::get('/personnel/create', [PersonnelController::class, 'create'])->name('personnel.create');
+    Route::post('/personnel', [PersonnelController::class, 'store'])->name('personnel.store');
 
 });

@@ -28,6 +28,9 @@
                         <a href="{{ route('clients.index') }}" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                             Clients
                         </a>
+                        <a href="{{ route('personnel.index') }}" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                            Personnel
+                        </a>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4">
@@ -68,7 +71,7 @@
     <footer class="@auth mt-12 @endauth bg-white border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <p class="text-center text-gray-500 text-sm">
-                &copy; {{ date('Y') }} Laravel App. All rights reserved.
+                &copy; {{ date('Y') }} Laravel 12. All rights reserved.
             </p>
         </div>
     </footer>

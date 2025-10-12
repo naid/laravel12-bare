@@ -7,7 +7,7 @@
     <h1 class="text-3xl font-bold text-gray-800">Welcome, {{ Auth::user()->name }}!</h1>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
     <a href="{{ route('users.index')}}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200">
         <h2 class="text-xl font-semibold text-blue-600">Users List</h2>
         <p class="text-gray-600 mt-2">Manage all users</p>
@@ -15,6 +15,10 @@
     <a href="{{ route('clients.index')}}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200">
         <h2 class="text-xl font-semibold text-blue-600">Clients List</h2>
         <p class="text-gray-600 mt-2">Manage all clients</p>
+    </a>
+    <a href="{{ route('personnel.index')}}" class="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200">
+        <h2 class="text-xl font-semibold text-blue-600">Personnel List</h2>
+        <p class="text-gray-600 mt-2">Manage personnel records</p>
     </a>
 </div>
 

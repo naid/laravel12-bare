@@ -46,4 +46,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Relationship: User has many Personnel records
+     */
+    public function personnel()
+    {
+        return $this->hasMany(Personnel::class);
+    }
 }

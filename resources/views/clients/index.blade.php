@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-            @foreach ($clients as $client)
+            @forelse ($clients as $client)
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {{ $client->name }}
@@ -33,10 +33,16 @@
                         {{ $client->industry }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $client->services_provided }}
+                        {{ $client->services_provided ?? 'N/A' }}
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">
+                        No clients found.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 </div>

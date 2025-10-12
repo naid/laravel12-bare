@@ -13,7 +13,26 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name', 255);
+            $table->string('industry', 100);
+            $table->string('services_provided', 255)->nullable();
+            $table->string('ccn', 12)->nullable();
+            $table->string('npi', 12)->nullable();
+            $table->text('address')->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('state', 100)->nullable();
+            $table->string('state_code', 3)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('country', 100)->nullable();
+            $table->string('contact_email', 255)->nullable();
+            $table->string('contact_phone', 20)->nullable();
+            $table->string('contact_number', 20)->nullable();
+            $table->string('website_url', 255)->nullable();
+            $table->timestamp('created_on')->useCurrent();
+            $table->unsignedInteger('created_by')->default(1);
+            $table->timestamp('updated_on')->useCurrent()->useCurrentOnUpdate();
+            $table->unsignedInteger('updated_by')->nullable();
+            $table->string('active', 12)->default('1');
         });
     }
 

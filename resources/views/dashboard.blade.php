@@ -33,6 +33,8 @@
             <button type="submit">Logout</button>
         </form>
     </div>
+
+    <p><a href="{{ route('users.index')}}">Users List</a></p>
     
     <p>You are logged in!</p>
     <p>Your email: {{ Auth::user()->email }}</p>

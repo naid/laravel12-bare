@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,8 +17,12 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/users',[UserController::class, 'index'])->name('users.index');
+
 });

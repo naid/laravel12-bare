@@ -43,4 +43,14 @@ class Client extends Model
     {
         return $this->hasMany(Personnel::class);
     }
+
+    /**
+     * Relationship: Client can be accessed by many Users (many-to-many)
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot('access_level')
+            ->withTimestamps();
+    }
 }

@@ -9,8 +9,28 @@ class PersonnelController
 {
     public function index()
     {
-        // Fetch all personnel with their related client and user data
-        $personnel = Personnel::with(['client', 'user'])->get();
+        // Example: Using the global selected client
+        // You can access the selected client in multiple ways:
+        
+        // Method 1: Using helper functions (recommended)
+        if (hasSelectedClient()) {
+            $selectedClient = selectedClient();
+            // Filter personnel by selected client
+            $personnel = Personnel::with(['client', 'user'])
+                ->where('client_id', selectedClientId())
+                ->get();
+        } else {
+            // Show all personnel if no client is selected
+            $personnel = Personnel::with(['client', 'user'])->get();
+        }
+        
+        // Method 2: Using session directly
+        // $selectedClientId = session('selected_client_id');
+        // $selectedClient = session('selected_client');
+        
+        // Method 3: Using the ClientHelper class
+        // use App\Helpers\ClientHelper;
+        // $selectedClient = ClientHelper::getSelectedClient();
         
         return view('personnel.index', compact('personnel'));
     }

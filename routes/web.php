@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::post('/clients/{client}/select', [ClientController::class, 'setSelectedClient'])->name('clients.select');
+    Route::post('/clients/clear', [ClientController::class, 'clearSelectedClient'])->name('clients.clear');
 
     Route::get('/personnel', [PersonnelController::class, 'index'])->name('personnel.index');
     Route::get('/personnel/create', [PersonnelController::class, 'create'])->name('personnel.create');

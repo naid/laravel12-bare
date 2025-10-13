@@ -1,49 +1,59 @@
-@extends('layouts.app')
+<div>
+    <a href="{{ route('dashboard') }}">Dashboard</a>
 
-@section('title', 'Clients List')
+    @if(session('success'))
+        <div style="padding: 10px; background-color: #d4edda; color: #155724; margin: 10px 0; border-radius: 4px;">
+            {{ session('success') }}
+        </div>
+    @endif
 
-@section('content')
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Clients</h1>
-    <p class="text-gray-600 mt-2">Manage all your clients</p>
-</div>
+    @if(session('warning'))
+        <div style="padding: 10px; background-color: #fff3cd; color: #856404; margin: 10px 0; border-radius: 4px;">
+            {{ session('warning') }}
+        </div>
+    @endif
 
-<div class="bg-white rounded-lg shadow-md overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
+    @if(session('error'))
+        <div style="padding: 10px; background-color: #f8d7da; color: #721c24; margin: 10px 0; border-radius: 4px;">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if(session('selected_client'))
+        <div style="padding: 10px; background-color: #cfe2ff; color: #084298; margin: 10px 0; border-radius: 4px;">
+            Currently Selected Client: <strong>{{ session('selected_client')->name }}</strong>
+            <form action="{{ route('clients.clear') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" style="margin-left: 10px; cursor: pointer;">Clear Selection</button>
+            </form>
+        </div>
+    @endif
+
+    <table>
+        <thead>
             <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Industry
-                </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Services
-                </th>
+                <th>Name</th>
+                <th>Industry</th>
+                <th>Services</th>
+                <th>Action</th>
             </tr>
         </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-            @forelse ($clients as $client)
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {{ $client->name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $client->industry }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $client->services_provided ?? 'N/A' }}
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="3" class="px-6 py-4 text-center text-gray-500">
-                        No clients found.
+        <tbody>
+            @foreach ($clients as $client)
+                <tr style="{{ session('selected_client_id') == $client->id ? 'background-color: #e7f3ff;' : '' }}">
+                    <td>{{ $client->name }}</td>
+                    <td>{{ $client->industry }}</td>
+                    <td>{{ $client->services_provided }}</td>
+                    <td>
+                        <form action="{{ route('clients.select', $client->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" style="cursor: pointer; text-decoration: underline; background: none; border: none; color: #0066cc;">
+                                Select Client
+                            </button>
+                        </form>
                     </td>
                 </tr>
-            @endforelse
+            @endforeach
         </tbody>
     </table>
 </div>
-@endsection

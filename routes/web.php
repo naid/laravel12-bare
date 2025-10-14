@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
     Route::post('/clients/{client}/select', [ClientController::class, 'setSelectedClient'])->name('clients.select');
     Route::post('/clients/clear', [ClientController::class, 'clearSelectedClient'])->name('clients.clear');

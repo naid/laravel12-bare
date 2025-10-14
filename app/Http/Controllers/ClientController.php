@@ -11,7 +11,7 @@ class ClientController extends Controller
     public function index()
     {
         // Authorization check
-        // $this->authorize('viewAny', Client::class);
+        $this->authorize('viewAny', Client::class);
         
         // Fetch only clients that the user has access to
         $user = auth()->user();

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @stack('styles')
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-slate-100 font-sans">
     <!-- Navigation -->
     @auth
     <nav class="bg-white shadow-md">
@@ -49,7 +49,7 @@
 
     <!-- Main Content -->
     <main class="@auth py-8 @endauth">
-        <div class="@yield('container-class', 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-slate-400')">
+        <div class="@yield('container-class', 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ')">
             <!-- Flash Messages -->
             @if(session('success'))
             <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">

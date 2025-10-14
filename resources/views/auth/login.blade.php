@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 
-@section('container-class', 'min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-purple-800 py-12 px-4 sm:px-6 lg:px-8')
+@section('container-class', 'min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800 py-12 px-4 sm:px-6 lg:px-8')
 
 @section('content')
 <div class="max-w-md w-full bg-white rounded-xl shadow-2xl p-8">
@@ -25,7 +25,7 @@
                 value="{{ old('email') }}" 
                 required 
                 autofocus
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 @error('email') border-red-500 @enderror"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 @error('email') border-red-500 @enderror"
                 placeholder="you@example.com"
             >
             @error('email')
@@ -42,7 +42,7 @@
                 id="password" 
                 name="password" 
                 required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200 @error('password') border-red-500 @enderror"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 @error('password') border-red-500 @enderror"
                 placeholder="••••••••"
             >
             @error('password')
@@ -55,7 +55,7 @@
                 type="checkbox" 
                 id="remember" 
                 name="remember"
-                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
             >
             <label for="remember" class="ml-2 block text-sm text-gray-700">
                 Remember me
@@ -64,7 +64,7 @@
 
         <button 
             type="submit"
-            class="w-full py-3 px-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition duration-200 shadow-lg hover:shadow-xl"
+            class="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 shadow-md"
         >
             Sign In
         </button>

@@ -3,9 +3,19 @@
 @section('title', 'Clients List')
 
 @section('content')
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Clients</h1>
-    <p class="text-gray-600 mt-2">Manage all clients</p>
+<div class="mb-6 flex items-center justify-between">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800">Clients</h1>
+        <p class="text-gray-600 mt-2">Manage all clients</p>
+    </div>
+    {{-- Uncomment when you add a create client route
+    <a 
+        href="{{ route('clients.create') }}" 
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 shadow-md font-semibold"
+    >
+        + Add Client
+    </a>
+    --}}
 </div>
 
 {{-- Display selected client if one is selected --}}

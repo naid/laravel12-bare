@@ -19,7 +19,7 @@
         </div>
         <form action="{{ route('clients.clear') }}" method="POST">
             @csrf
-            <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+            <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200 shadow-md font-semibold">
                 Clear Selection
             </button>
         </form>

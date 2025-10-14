@@ -3,12 +3,14 @@
 @section('title', 'Personnel List')
 
 @section('content')
-<div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Personnel</h1>
-    <p class="text-gray-600 mt-2">Manage Personnel</p>
+<div class="mb-6 flex items-center justify-between">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800">Personnel</h1>
+        <p class="text-gray-600 mt-2">Manage personnel records</p>
+    </div>
     <a 
         href="{{ route('personnel.create') }}" 
-        class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 shadow-md"
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 shadow-md font-semibold"
     >
         + Add Personnel
     </a>

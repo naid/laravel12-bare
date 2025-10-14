@@ -49,7 +49,7 @@
 
     <!-- Main Content -->
     <main class="@auth py-8 @endauth">
-        <div class="@yield('container-class', 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8')">
+        <div class="@yield('container-class', 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-slate-400')">
             <!-- Flash Messages -->
             @if(session('success'))
             <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">

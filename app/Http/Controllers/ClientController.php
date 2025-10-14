@@ -6,7 +6,7 @@ use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ClientController 
+class ClientController extends Controller 
 {
     public function index()
     {

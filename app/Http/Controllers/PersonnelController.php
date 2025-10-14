@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Personnel;
 use Illuminate\Http\Request;
 
-class PersonnelController
+class PersonnelController extends Controller
 {
     public function index()
     {

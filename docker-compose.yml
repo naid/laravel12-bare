@@ -9,7 +9,8 @@ services:
     volumes:
       - ./:/var/www/html
     ports:
-      - "8000:80"
+      - "8000:80" # Laravel app
+      - "5173:5173" # Vite dev server
     networks:
       - laravel12_network
     depends_on:
@@ -18,6 +19,7 @@ services:
       - PHP_FPM_LISTEN=127.0.0.1:9000
     # Note: This container includes Node.js 20.x LTS, npm, and npx for Laravel Vite/Tailwind CSS
     # To verify: docker exec -it laravel12_app node --version
+    # To run Vite dev server: docker exec -it laravel12_app npm run dev
 
   db:
     image: mysql:8.0

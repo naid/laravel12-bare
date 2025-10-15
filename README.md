@@ -2,6 +2,18 @@
 
 This is a Laravel 12 application configured to run with Docker and Docker Compose.
 
+## 📚 Documentation
+
+Comprehensive guides are available in the [`md/`](md/) folder:
+
+- **[Setup Summary](md/SETUP_SUMMARY.md)** - Quick reference for the entire project
+- **[Vite Dev Server Guide](md/VITE_GUIDE.md)** 🔥 - Hot reload and instant updates
+- **[Tailwind CSS v3 Reference](md/TAILWIND_V3_REFERENCE.md)** ⭐ - Current Tailwind setup and usage
+- **[Tailwind Troubleshooting](md/TROUBLESHOOTING_TAILWIND.md)** 🔧 - Fix common CSS issues
+- **[Layout Usage Guide](md/LAYOUT_USAGE_GUIDE.md)** - How to use the layout system
+
+👉 **New to this project?** Start with the [Setup Summary](md/SETUP_SUMMARY.md)
+
 ## Features
 
 - **Laravel 12** - Latest Laravel framework

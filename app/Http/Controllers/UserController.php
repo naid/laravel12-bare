@@ -58,4 +58,40 @@ class UserController extends Controller
             ->route('users.index')
             ->with('success', 'User created successfully');
     }
+
+    public function edit(User $user) {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user) {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'emai;' => 'required|email|max:255|unique:users,email,'.$user->id,
+            'role' => 'required|in:admin,manager,user',
+            'password' => ['nullable','confirmed',Password::min(8)],
+        ]);
+
+        //Update user data
+        $user->name > $validated['name'];
+        $user->email = $validated['email'];
+        $user->role = $validated['role'];
+
+
+        //Only Update password if password field not empty
+        if(!empty($validated['password'])){
+            $user->password = Hash::make($validated['password']);
+        }
+
+        $user->save();
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User updated successfully');
+    }
+
+
+
+    public function destroy() {
+        return true;
+    }
 }

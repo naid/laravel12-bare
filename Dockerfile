@@ -14,11 +14,17 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
-    nodejs \
-    npm \
     nginx \
     supervisor \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+    ca-certificates \
+    gnupg
+
+# Install Node.js 20.x LTS (includes npm and npx)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer

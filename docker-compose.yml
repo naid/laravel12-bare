@@ -16,6 +16,8 @@ services:
       - db
     environment:
       - PHP_FPM_LISTEN=127.0.0.1:9000
+    # Note: This container includes Node.js 20.x LTS, npm, and npx for Laravel Vite/Tailwind CSS
+    # To verify: docker exec -it laravel12_app node --version
 
   db:
     image: mysql:8.0

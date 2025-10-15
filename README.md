@@ -11,8 +11,11 @@ Comprehensive guides are available in the [`md/`](md/) folder:
 - **[Tailwind CSS v3 Reference](md/TAILWIND_V3_REFERENCE.md)** ⭐ - Current Tailwind setup and usage
 - **[Tailwind Troubleshooting](md/TROUBLESHOOTING_TAILWIND.md)** 🔧 - Fix common CSS issues
 - **[Layout Usage Guide](md/LAYOUT_USAGE_GUIDE.md)** - How to use the layout system
+- **[Role-Based Auth Guide](md/ROLE_BASED_AUTH_GUIDE.md)** 🔐 - Build authentication with roles
+- **[Implementation Checklist](md/ROLE_AUTH_IMPLEMENTATION_CHECKLIST.md)** ✅ - Step-by-step tasks
 
-👉 **New to this project?** Start with the [Setup Summary](md/SETUP_SUMMARY.md)
+👉 **New to this project?** Start with the [Setup Summary](md/SETUP_SUMMARY.md)  
+👉 **Building authentication?** Check [Role-Based Auth Guide](md/ROLE_BASED_AUTH_GUIDE.md)
 
 ## Features
 

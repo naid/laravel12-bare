@@ -100,6 +100,39 @@ How we fixed Tailwind CSS not displaying styles:
 
 ---
 
+### 6. [ROLE_BASED_AUTH_GUIDE.md](ROLE_BASED_AUTH_GUIDE.md)
+
+**Role-Based Authentication Complete Guide** 🔐
+
+Build a complete authentication system with roles:
+
+- Database setup (adding role column)
+- User model enhancements
+- Middleware for role protection
+- Controllers for each role
+- Login and dashboard views
+- Testing and security best practices
+
+👉 **Follow this** to implement admin, manager, and user roles
+
+---
+
+### 7. [ROLE_AUTH_IMPLEMENTATION_CHECKLIST.md](ROLE_AUTH_IMPLEMENTATION_CHECKLIST.md)
+
+**Implementation Checklist** ✅
+
+Step-by-step checklist for building the auth system:
+
+- Task list with checkboxes
+- Files to create and edit
+- Commands to run
+- Testing steps
+- Learning outcomes
+
+👉 **Use this** as your implementation roadmap
+
+---
+
 ## 🎯 Quick Navigation by Task
 
 ### I want to...
